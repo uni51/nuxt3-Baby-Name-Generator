@@ -1,20 +1,5 @@
 <script setup lang="ts">
-enum Gender {
-  BOY = "Boy",
-  UNISEX = "Unisex",
-  GIRL = "Girl",
-}
-
-enum Popularity {
-  TRENDY = "Trendy",
-  Unique = "Unique",
-}
-
-enum Length {
-  LONG = "Long",
-  ALL = "All",
-  SHORT = "Short",
-}
+import { Gender, Popularity, Length, names } from "@/data";
 
 interface OptionSate {
   gender: Gender;
@@ -22,11 +7,13 @@ interface OptionSate {
   length: Length;
 }
 
-const options: OptionSate = reactive({
+const options = reactive<OptionSate>({
   gender: Gender.GIRL,
   popularity: Popularity.TRENDY,
   length: Length.SHORT,
 });
+
+const selectedNames = ref<string[]>([]);
 </script>
 
 <template>
@@ -72,8 +59,8 @@ const options: OptionSate = reactive({
           </button>
           <button
             class="option option-right"
-            :class="options.popularity === Popularity.Unique && 'option-active'"
-            @click="options.popularity = Popularity.Unique"
+            :class="options.popularity === Popularity.UNIQUE && 'option-active'"
+            @click="options.popularity = Popularity.UNIQUE"
           >
             Unique
           </button>
@@ -105,7 +92,9 @@ const options: OptionSate = reactive({
           </button>
         </div>
       </div>
+      <button class="primary">Find Names</button>
     </div>
+    {{ selectedNames }}
   </div>
 </template>
 
@@ -159,5 +148,16 @@ h1 {
 .option-active {
   background-color: rgb(249, 87, 89);
   color: white;
+}
+
+.primary {
+  background-color: rgb(249, 87, 89);
+  color: white;
+  border-radius: 6.5rem;
+  border: none;
+  padding: 0.75rem 4rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
 }
 </style>
