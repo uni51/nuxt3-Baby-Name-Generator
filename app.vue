@@ -1,3 +1,34 @@
+<script setup lang="ts">
+enum Gender {
+  BOY = "Boy",
+  UNISEX = "Unisex",
+  GIRL = "Girl",
+}
+
+enum Popularity {
+  TRENDY = "Trendy",
+  Unique = "Unique",
+}
+
+enum Length {
+  LONG = "Long",
+  ALL = "All",
+  SHORT = "Short",
+}
+
+interface OptionSate {
+  gender: Gender;
+  popularity: Popularity;
+  length: Length;
+}
+
+const options: OptionSate = reactive({
+  gender: Gender.GIRL,
+  popularity: Popularity.TRENDY,
+  length: Length.SHORT,
+});
+</script>
+
 <template>
   <div class="container">
     <h1>Baby Name Generator</h1>
@@ -8,19 +39,19 @@
         <div class="option-buttons">
           <button
             class="option option-left"
-            :class="options.gender === 'Boy' && 'option-active'"
+            :class="options.gender === Gender.BOY && 'option-active'"
           >
             Boy
           </button>
           <button
             class="option"
-            :class="options.gender === 'Unisex' && 'option-active'"
+            :class="options.gender === Gender.UNISEX && 'option-active'"
           >
             Unisex
           </button>
           <button
             class="option option-right"
-            :class="options.gender === 'Girl' && 'option-active'"
+            :class="options.gender === Gender.GIRL && 'option-active'"
           >
             Girl
           </button>
@@ -31,13 +62,13 @@
         <div class="option-buttons">
           <button
             class="option option-left"
-            :class="options.popularity === 'Trendy' && 'option-active'"
+            :class="options.popularity === Popularity.TRENDY && 'option-active'"
           >
             Trendy
           </button>
           <button
             class="option option-right"
-            :class="options.popularity === 'Unique' && 'option-active'"
+            :class="options.popularity === Popularity.Unique && 'option-active'"
           >
             Unique
           </button>
@@ -48,19 +79,19 @@
         <div class="option-buttons">
           <button
             class="option option-left"
-            :class="options.length === 'Long' && 'option-active'"
+            :class="options.length === Length.LONG && 'option-active'"
           >
             Long
           </button>
           <button
             class="option"
-            :class="options.length === 'All' && 'option-active'"
+            :class="options.length === Length.ALL && 'option-active'"
           >
             All
           </button>
           <button
             class="option option-right"
-            :class="options.length === 'Short' && 'option-active'"
+            :class="options.length === Length.SHORT && 'option-active'"
           >
             Short
           </button>
@@ -69,14 +100,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-const options = reactive({
-  gender: "Girl",
-  popularity: "Unique",
-  length: "Long",
-});
-</script>
 
 <style scoped>
 .container {
