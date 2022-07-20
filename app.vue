@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Gender, Popularity, Length, names } from "@/data";
-// import Option from "#components";
 
 interface OptionSate {
   gender: Gender;
